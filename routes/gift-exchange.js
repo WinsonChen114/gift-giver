@@ -8,11 +8,11 @@ router.post("/pairs", async (request, response, next) => {
     try{
         if(!request.body)
         {
-            throw new BadRequestError()
+            throw new BadRequestError
         }
         if(!request.body["names"])
         {
-            throw new BadRequestError()
+            throw new BadRequestError
         }
     }
     catch (err)
@@ -31,13 +31,14 @@ router.post("/pairs", async (request, response, next) => {
 
 router.post("/traditional", async (request, response, next) => {
     try{
+        //If there is no request body, or names does not exist, throw a BadRequestError
         if(!request.body)
         {
-            throw new BadRequestError()
+            throw new BadRequestError
         }
         if(!request.body["names"])
         {
-            throw new BadRequestError()
+            throw new BadRequestError
         }
     }
     catch (err)
