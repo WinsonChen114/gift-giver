@@ -15,6 +15,12 @@ router.post("/pairs", async (request, response, next) => {
 })
 
 router.post("/traditional", async (request, response, next) => {
-    response.status(200).json({ "traditional": "ok" })
+    try {
+        const random = await GiftExchange.traditional(request.body["names"])
+        response.status(200).json(random)
+    }
+    catch (err) {
+        next(err)
+    }
 })
 module.exports = router
