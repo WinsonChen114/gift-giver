@@ -14,4 +14,16 @@ app.get("/", async (request, response, next) => {
     response.status(200).json({"ping": "pong"})
 } )
 
+//handles all 404 errors what were not matched by a route
+app.use((request, response, next) => {
+    return next(new NotFoundError())
+}) 
+
+//Generic error handler, anythign that is not handeled at this point is handeled
+app.use((error, request, response, next) => {
+    return response.status(error.status || 500).json({
+        error: {message: error.message || "Something went wrong in the application", status: error.status || 500}
+    })
+})
+
 module.exports = app
